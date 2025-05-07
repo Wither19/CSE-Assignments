@@ -33,6 +33,17 @@ def question(q, responses, err_msg="Not a correct response."):
         
   return answer.capitalize()
 
+def input_number(msg, num_type = "int"):
+  while (True):
+    try:
+      if (num_type == "int"):
+        answer = int(input(msg))
+      else:
+        answer = float(input(msg))
+      return answer
+    except:
+      print("Please enter numbers.")
+
 # Questions
 answer1 = question("Question 1: Never need sleep, or always need 10 hours of sleep?", ["no sleep", "10 hours"])
 
