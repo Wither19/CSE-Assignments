@@ -5,6 +5,7 @@ import sys
 # You should declare your inputChoice here
 """"This Function validates that the user only entered on of the options
 and it will continue asking the user to re-enter until they type in one of the options"""
+
 def inputChoice(message, options, error="Invalid option. Please try again."):
   answer = ""
   response_list = ""
@@ -13,11 +14,11 @@ def inputChoice(message, options, error="Invalid option. Please try again."):
     response_list += f"\n{o}"
 
   while (answer not in options):
-    answer = input(message).lower()
+    answer = input(message + " ").lower()
 
     if (answer not in options):
       print(error)
-      
+    
   return answer
 
 
@@ -103,10 +104,10 @@ if isAuthenticated(pin)==True: # In tis line of code you are callthe function is
       # 2D List containing the option numbers in the first list, and the option names in the second.
       menu_options = [["1", "2", "3", "4"], ["Withdraw", "Deposit", "Check Balance", "Return Card"]]
 
-      for option in menu_options[1]:
-        print(f"{menu_options[0][option.index()]}{".":5} {option[1]}")
+      for option in menu_options[0]:
+        print(f"{option}{".":5} {menu_options[1][int(option) - 1]}")
 
-      option = inputChoice("Please enter option.", [menu_options[0]]) #You can delete this line once you add the correct code
+      option = inputChoice("Please select option:", menu_options[0]) #You can delete this line once you add the correct code
 
       
 
