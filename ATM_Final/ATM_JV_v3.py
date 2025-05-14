@@ -107,6 +107,8 @@ if isAuthenticated(pin)==True:
   # Initialize variables for the loop to change
   option = ""
   initial_balance = 5000.00
+
+  # Transaction types, Transaction amounts (Withdrawal amounts are made negative in the function)
   transactions = [[], []]
 
   while (option != "4"):
