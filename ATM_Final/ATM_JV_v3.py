@@ -1,11 +1,6 @@
-import sys 
-#*********************Function declarations***********************************
+import sys
 
-
-# You should declare your inputChoice here
-""""This Function validates that the user only entered on of the options
-and it will continue asking the user to re-enter until they type in one of the options"""
-
+# Validates that the input is part of a set of options, will loop continuously until a valid option is given
 def inputChoice(message, options, error="Invalid option. Please try again."):
   answer = ""
   response_list = ""
@@ -21,10 +16,7 @@ def inputChoice(message, options, error="Invalid option. Please try again."):
     
   return answer
 
-
-# You should declare your inputNumber here
-""""This Function validates that the user only entered number
-and it will continue asking the user to re-enter until they type in a numebr"""
+# Validates the input is a number
 def inputNumber(message):
     number = 0
     
@@ -43,13 +35,9 @@ def inputNumber(message):
     return number
 
 
-# You should declare the isAuthenticated function here
-""""This Function validates that the user pin number matches 3487. 
-    It will allow the user to try 3 times. If correct then you will 
-    return a True and if incorrect you will return a False."""
-def isAuthenticated(pin):
+# Gives the user a number (attempts, that defaults to 3) of chances to input a specific PIN. Exits the program completely if the user runs out of attempts.
+def isAuthenticated(pin, attempts=3):
     validated = False
-    attempt = 1
 
     while (not validated):
 
@@ -62,7 +50,7 @@ def isAuthenticated(pin):
          break
       
       # If the user cannot guess the pin on the third try
-      elif (attempt == 3):
+      elif (attempts == 3):
          print("You have reached the maximum number of attempts. Please wait 24 hours before trying again. Thank you, and have a blessed day!")
          sys.exit()
       
@@ -71,15 +59,15 @@ def isAuthenticated(pin):
             
         print("Incorrect PIN #\n")
 
-        if (attempt == 2):
+        if (attempts == 2):
           print(f"You have 1 attempt left.")
         
         else:
-          print(f"You have {3 - attempt} attempts left.")
+          print(f"You have {3 - attempts} attempts left.")
 
         pin = inputNumber("Please enter your pin #. ")
 
-      attempt += 1
+      attempts += 1
 
     return validated
 
@@ -102,7 +90,7 @@ print("Welcome to MyCCA Bank ATM".center(50))
 # Part I Authentication Screen.
 pin = inputNumber("Please enter your pin #. ")
 
-if isAuthenticated(pin)==True:
+if isAuthenticated(pin):
     
   # Initialize variables for the loop to change
   option = ""
@@ -131,8 +119,8 @@ if isAuthenticated(pin)==True:
         else:
           make_transaction(initial_balance, transactions, "withdraw", withdraw_amount)
           print("Transation has been completed successfully.")
-          print(f"Amount withdrawn: ${withdraw_amount:.2f}")
-          print(f"Current account balance: ${(initial_balance - withdraw_amount):.2f}")
+          print(f"Amount withdrawn: ${withdraw_amount:.2f}".center(25))
+          print(f"Current account balance: ${(initial_balance - withdraw_amount):.2f}".center(25))
 
         input("Press enter to return to the Main Menu ")
 
