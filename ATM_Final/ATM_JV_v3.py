@@ -85,7 +85,7 @@ def make_transaction(balance, arr, transaction_type, amount):
 
 #*************************Main Program*****************************************
 
-print("Welcome to MyCCA Bank ATM".center(50))
+print("Welcome to MyCCA Bank ATM")
 
 # Part I Authentication Screen.
 pin = inputNumber("Please enter your pin #. ")
