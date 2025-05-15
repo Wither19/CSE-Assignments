@@ -72,11 +72,9 @@ def isAuthenticated(pin, attempts=3):
     return validated
 
 
-def make_transaction(balance, arr, transaction_type, amount):
+def make_transaction(arr, transaction_type, amount):
   if (transaction_type == "withdraw"):
     amount *= -1
-
-  balance += amount
 
   arr[0].append(transaction_type)
   arr[1].append(amount)
@@ -117,7 +115,10 @@ if isAuthenticated(pin):
           print("You have insufficient funds in your account to withdraw that amount.")
         
         else:
-          make_transaction(initial_balance, transactions, "withdraw", withdraw_amount)
+          # Handle adding the transaction to the list, and removing from the balance
+          make_transaction(transactions, "withdraw", withdraw_amount)
+          initial_balance -= withdraw_amount
+
           print("Transation has been completed successfully.")
           print(f"Amount withdrawn: ${withdraw_amount:.2f}".center(25))
           print(f"Current account balance: ${(initial_balance - withdraw_amount):.2f}".center(25))
