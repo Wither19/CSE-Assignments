@@ -127,7 +127,7 @@ if is_authenticated(pin):
 
       option = input_choice("Please select option:", menu_options[0])
 
-      # Be sure to check for a string "1", "2", "3" etc. in conditionals
+      # Withdrawal
       if (option == "1"):
         withdraw_amount = input_number("Please enter amount to withdraw ($): ")
 
@@ -144,6 +144,7 @@ if is_authenticated(pin):
 
         go_to_menu()
 
+      # Deposit
       elif (option == "2"):
         deposit_amount = input_number("Please enter amount to deposit ($): ")
 
@@ -155,6 +156,7 @@ if is_authenticated(pin):
 
         go_to_menu()
 
+      # Check Balance
       elif (option == "3"):
         centered_print(f"ATM Account Balance: ${balance:.2f}")
         
