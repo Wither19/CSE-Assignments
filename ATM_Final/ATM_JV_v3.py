@@ -5,8 +5,9 @@ def inputChoice(message, options, error="Invalid option. Please try again."):
   answer = ""
   response_list = ""
 
-  for o in options:
-    response_list += f"\n{o}"
+  # The string to neatly display all options
+  for option in options:
+    response_list += f"\n{option}"
 
   while (answer not in options):
     answer = input(message + " ").lower()
