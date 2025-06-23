@@ -4,14 +4,20 @@ package main
 
 import (
 	"encoding/csv"
+	"flag"
 	"fmt"
 	"log"
 	"os"
-	"strconv"
 )
 
 func main() {
-	quizFile, fileOpenErr := os.Open("problems.csv")
+
+	problemFile := flag.String("file", "problems.csv", "Provide the location of the problems you'd like to quiz on, as a CSV.")
+
+	flag.Parse()
+
+	quizFile, fileOpenErr := os.Open(*problemFile)
+
 	if (fileOpenErr != nil) {
 		log.Fatal(fileOpenErr)
 	} else {
@@ -21,6 +27,7 @@ func main() {
 	reader := csv.NewReader(quizFile)
 
 	problems, problemsErr := reader.ReadAll()
+
 	if (problemsErr != nil) {
 		log.Fatal(problemsErr)
 	} 
@@ -29,6 +36,7 @@ func main() {
 
 		for i, problem := range problems {
 			correctAnswerCount += presentProblem(i, problem[0], problem[1])
+
 			if (i == len(problems) - 1) {
 				fmt.Printf("Your results:\n%d/%d answered correctly\n", correctAnswerCount, len(problems))
 			}
@@ -44,17 +52,7 @@ func presentProblem(n int, p string, a string) int {
 	fmt.Printf("#%d. %v ", displayProblemNum, p)
 	fmt.Scanln(&answer)
 
-	convertedAnswer, conversionErr := strconv.ParseInt(answer, 0, 0)
-	if (conversionErr != nil) {
-		log.Fatal(conversionErr)
-	} 
-
-	convertedCorrectAnswer, correctAnswerConvErr := strconv.ParseInt(a, 0, 0)
-	if (correctAnswerConvErr != nil) {
-		log.Fatal(conversionErr)
-	}
-
-	if (convertedCorrectAnswer == convertedAnswer) {
+	if (answer == a) {
 		fmt.Println("\nCorrect!")
 		isCorrect = 1
 
