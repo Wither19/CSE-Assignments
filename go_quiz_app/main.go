@@ -14,7 +14,6 @@ import (
 func main() {
 
 	problemFile := flag.String("file", "problems.csv", "Provide the location of the problems you'd like to quiz on, as a CSV.")
-	shuffle := flag.Bool
 
 	flag.Parse()
 
@@ -37,26 +36,29 @@ func main() {
 	correctAnswerCount := 0
 
 		for i, problem := range problems {
-			correctAnswerCount += presentProblem(i, problem[0], problem[1])
+			correctAnswerCount += presentProblem(i, problem)
 
 			if (i == len(problems) - 1) {
-				fmt.Printf("Your results:\n%d/%d answered correctly\n", correctAnswerCount, len(problems))
+				fmt.Printf("\nYour results:\n%d/%d answered correctly\n", correctAnswerCount, len(problems))
 			}
 		}
 }
 
-func presentProblem(n int, p string, a string) int {
-	displayProblemNum := n + 1
+func presentProblem(questionNum int, problemSet []string) int {
+	displayProblemNum := questionNum + 1
 	isCorrect := 0
+
+	problem := problemSet[0]
+	answer := problemSet[1]
 	
-	var answer string
+	var userAnswer string
 
-	fmt.Printf("#%d. %v ", displayProblemNum, p)
-	fmt.Scanln(&answer)
+	fmt.Printf("#%d. %v ", displayProblemNum, problem)
+	fmt.Scanln(&userAnswer)
 
-	answer = strings.Trim(answer, " ")
+	userAnswer = strings.Trim(userAnswer, " ")
 
-	if (answer == a) {
+	if (userAnswer == answer) {
 		fmt.Println("\nCorrect!")
 		isCorrect = 1
 
