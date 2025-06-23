@@ -56,7 +56,7 @@ func presentProblem(questionNum int, problemSet []string) int {
 	fmt.Printf("#%d. %v ", displayProblemNum, problem)
 	fmt.Scanln(&userAnswer)
 
-	userAnswer = strings.Trim(userAnswer, " ")
+	userAnswer = strings.Trim(strings.ToLower(userAnswer), " ")
 
 	if (userAnswer == answer) {
 		fmt.Println("\nCorrect!")
