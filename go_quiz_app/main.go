@@ -13,8 +13,7 @@ import (
 
 func main() {
 
-	problemFile := flag.String("file", "problems.csv", "Provide the location of the problems you'd like to quiz on, as a CSV.")
-
+	problemFile := flag.String("file", "problems.csv", "The CSV for the set of problems used")
 	flag.Parse()
 
 	quizFile, fileOpenErr := os.Open(*problemFile)
@@ -36,7 +35,7 @@ func main() {
 	correctAnswerCount := 0
 
 		for i, problem := range problems {
-			correctAnswerCount += presentProblem(i, problem)
+			correctAnswerCount += presentProblem(i + 1, problem)
 
 			if (i == len(problems) - 1) {
 				fmt.Printf("\nYour results:\n%d/%d answered correctly\n", correctAnswerCount, len(problems))
@@ -45,15 +44,13 @@ func main() {
 }
 
 func presentProblem(questionNum int, problemSet []string) int {
-	displayProblemNum := questionNum + 1
 	isCorrect := 0
 
-	problem := problemSet[0]
-	answer := problemSet[1]
+	problem, answer := problemSet[0], problemSet[1]
 	
 	var userAnswer string
 
-	fmt.Printf("#%d. %v ", displayProblemNum, problem)
+	fmt.Printf("#%d. %v ", questionNum, problem)
 	fmt.Scanln(&userAnswer)
 
 	userAnswer = strings.Trim(strings.ToLower(userAnswer), " ")
