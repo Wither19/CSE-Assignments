@@ -8,11 +8,13 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 )
 
 func main() {
 
 	problemFile := flag.String("file", "problems.csv", "Provide the location of the problems you'd like to quiz on, as a CSV.")
+	shuffle := flag.Bool
 
 	flag.Parse()
 
@@ -51,6 +53,8 @@ func presentProblem(n int, p string, a string) int {
 
 	fmt.Printf("#%d. %v ", displayProblemNum, p)
 	fmt.Scanln(&answer)
+
+	answer = strings.Trim(answer, " ")
 
 	if (answer == a) {
 		fmt.Println("\nCorrect!")
