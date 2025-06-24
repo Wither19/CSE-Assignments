@@ -17,9 +17,9 @@ func main() {
 	var quizFileName string
 
 	if (strings.Contains(inputFileName, ".csv")) {
-		quizFileName = fmt.Sprintf("%s", inputFileName)
+		quizFileName = fmt.Printf("%v", inputFileName)
 	} else {
-		quizFileName = fmt.Sprintf("%s.csv", inputFileName)
+		quizFileName = fmt.Printf("%v.csv", inputFileName)
 	}
 
 
