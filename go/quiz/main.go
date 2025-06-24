@@ -20,8 +20,6 @@ func main() {
 
 	if (fileOpenErr != nil) {
 		log.Fatal(fileOpenErr)
-	} else {
-		fmt.Println("Problems successfully loaded!")
 	}
 
 	reader := csv.NewReader(quizFile)
