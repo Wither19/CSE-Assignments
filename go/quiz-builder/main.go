@@ -15,13 +15,12 @@ func main() {
 	fmt.Scanln(&inputFileName)
 
 	var quizFileName string
-
+	
 	if (strings.Contains(inputFileName, ".csv")) {
-		quizFileName = fmt.Printf("%v", inputFileName)
+		quizFileName = fmt.Sprintf("%v", inputFileName)
 	} else {
-		quizFileName = fmt.Printf("%v.csv", inputFileName)
+		quizFileName = fmt.Sprintf("%v.csv", inputFileName)
 	}
-
 
 	newQuizFile, quizFileErr := os.Create(quizFileName)
 	if (quizFileErr != nil) {
