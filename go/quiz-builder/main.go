@@ -9,7 +9,21 @@ import (
 )
 
 func main() {
-	newQuizFile, quizFileErr := os.Create("new_quiz.csv")
+	var inputFileName string
+
+	fmt.Print("What would you like to name the new quiz file? ")
+	fmt.Scanln(&inputFileName)
+
+	var quizFileName string
+
+	if (strings.Contains(inputFileName, ".csv")) {
+		quizFileName = fmt.Sprintf("%s", inputFileName)
+	} else {
+		quizFileName = fmt.Sprintf("%s.csv", inputFileName)
+	}
+
+
+	newQuizFile, quizFileErr := os.Create(quizFileName)
 	if (quizFileErr != nil) {
 		log.Fatal(quizFileErr)
 	}
@@ -31,7 +45,7 @@ func main() {
 		fmt.Scanln(&answer)
 		fmt.Println()
 
-		fmt.Printf("Q: %v\nA: %v\n\nWould you like to add this question? (y/n) ", question, answer)
+		fmt.Printf("Q: %v\nA: %v\n\nConfirm question? (y/n) ", question, answer)
 		fmt.Scanln(&addQuestion)
 		fmt.Println()
 
@@ -48,6 +62,7 @@ func main() {
 		}
 
 		quizWriter.Flush()
+
 		fmt.Printf("Questions successfully written to %v\n", newQuizFile.Name())
 	} 
 }
