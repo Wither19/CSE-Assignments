@@ -13,6 +13,7 @@ import (
 
 func main() {
 
+	// Initialize a flag to change the file opened for the questions
 	problemFile := flag.String("file", "problems.csv", "The CSV for the set of problems used")
 	flag.Parse()
 
@@ -39,6 +40,7 @@ func main() {
 				fmt.Printf("\nYour results:\n%d/%d answered correctly\n", correctAnswerCount, len(problems))
 			}
 		}
+	defer quizFile.Close()
 }
 
 func presentProblem(questionNum int, problemSet []string) int {

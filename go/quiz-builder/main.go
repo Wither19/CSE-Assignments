@@ -8,6 +8,14 @@ import (
 	"strings"
 )
 
+func ynConfirm(s string) bool {
+	if (strings.ToLower(s) == "y") {
+		return true
+	} else {
+		return false
+	}
+}
+
 func main() {
 	var inputFileName string
 
@@ -48,7 +56,7 @@ func main() {
 		fmt.Scanln(&addQuestion)
 		fmt.Println()
 
-		if (strings.ToLower(addQuestion) == "y") {
+		if (ynConfirm(addQuestion)) {
 			questionSet := []string{question, answer}
 			quizWriter.Write(questionSet)
 		}
@@ -57,7 +65,7 @@ func main() {
 		fmt.Scanln(&addAnother)
 		fmt.Println()
 
-		if (strings.ToLower(addAnother) == "n") {
+		if (!ynConfirm(addAnother)) {
 			questionAdding = false
 		}
 
