@@ -13,5 +13,5 @@ func main() {
 		log.Fatal(dexFetchErr)
 	}
 
-	fmt.Println(natlDex.PokemonEntries[0].PokemonSpecies.Name)
+	fmt.Println(natlDex.PokemonEntries[250].PokemonSpecies.Name)
 }

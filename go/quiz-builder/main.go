@@ -49,7 +49,8 @@ func main() {
 		fmt.Println()
 
 		if (strings.ToLower(addQuestion) == "y") {
-			quizWriter.Write([]string{question, answer})
+			questionSet := []string{question, answer}
+			quizWriter.Write(questionSet)
 		}
 
 		fmt.Printf("Would you like to add another question? (y/n) ")
