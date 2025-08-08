@@ -1,6 +1,6 @@
 import java.util.GregorianCalendar;
 
-public class Main {
+class Main {
   public static String weekdayName(int weekday) {
     String result = "";
 

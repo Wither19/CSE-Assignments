@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main {
+class Main {
   private static boolean askQuestion(String prompt, String[] answers, int correctAnswerNum) {
     Scanner s = new Scanner(System.in);
 
